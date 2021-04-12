@@ -1,0 +1,40 @@
+{
+    "name": "@quadient/remote-scripting-development",
+    "version": "0.1.0",
+    "description": "This package provides a CLI tool for remote TypeScript/JavaScript project development and deployment.",
+    "keywords": [
+        "remote",
+        "scripting",
+        "development"
+    ],
+    "homepage": "https://github.com/quadient/remote-scripting-development",
+    "bugs": {
+        "url": "https://github.com/quadient/remote-scripting-development/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/quadient/remote-scripting-development.git"
+    },
+    "license": "MIT",
+    "author": "o-su",
+    "main": "./build.js",
+    "bin": "./build.js",
+    "prettier": {
+        "printWidth": 140,
+        "tabWidth": 4
+    },
+    "dependencies": {
+        "browserify": "*",
+        "dotenv": "*",
+        "file-tree-walker-ts": "*",
+        "fs-extra": "*",
+        "glob": "*",
+        "pkg-config": "*",
+        "tsify": "*",
+        "typescript": "*",
+        "yargs": "*"
+    },
+    "devDependencies": {
+        "prettier": "*"
+    }
+}
