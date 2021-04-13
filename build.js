@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 const fs = require("fs");
 const fsExtra = require("fs-extra");
 const { FileTreeWalker } = require("file-tree-walker-ts");
@@ -14,12 +15,9 @@ const settings = require("pkg-config")("remote-scripting-development");
 
 dotenv.config();
 
-const url = new URL(process.env.RSD_API_ENDPOINT);
-const apiToken = process.env.RSD_API_TOKEN;
 const isProductionEnvironment = process.env.RSD_ENVIRONMENT && process.env.RSD_ENVIRONMENT === "dev" ? false : true;
 const buildDir = path.join(".", "dest");
 const backupsDir = path.join(".", "backups");
-const httpModule = url.protocol ? https : http;
 
 yargs(process.argv.slice(2))
     .command("init", "Creates default configuration.", init)
@@ -97,7 +95,7 @@ async function packProject() {
     const package = {};
 
     return new FileTreeWalker()
-        .onFile(async (filePath, _filename, _fileExtension, content) => {
+        .onFile((filePath, _filename, _fileExtension, content) => {
             const filePathParts = filePath.split(path.sep);
 
             filePathParts.shift();
@@ -108,6 +106,8 @@ async function packProject() {
 }
 
 function sendPackage(package, onDone) {
+    const url = new URL(process.env.RSD_API_ENDPOINT);
+    const httpModule = url.protocol ? https : http;
     const updateRequest = httpModule.request(url, createRequestSettings(), (res) => {
         const chunks = [];
 
@@ -144,6 +144,8 @@ function backupPackage(package) {
 }
 
 function createRequestSettings() {
+    const apiToken = process.env.RSD_API_TOKEN;
+
     return {
         method: "POST",
         headers: {
