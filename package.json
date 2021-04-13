@@ -1,6 +1,6 @@
 {
     "name": "@quadient/remote-scripting-development",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "This package provides a CLI tool for remote TypeScript/JavaScript project development and deployment.",
     "keywords": [
         "remote",
