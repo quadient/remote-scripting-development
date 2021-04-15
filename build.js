@@ -107,7 +107,7 @@ async function packProject() {
 
 function sendPackage(package, onDone) {
     const url = new URL(process.env.RSD_API_ENDPOINT);
-    const httpModule = url.protocol ? https : http;
+    const httpModule = url.protocol === "https:" ? https : http;
     const updateRequest = httpModule.request(url, createRequestSettings(), (res) => {
         const chunks = [];
 
